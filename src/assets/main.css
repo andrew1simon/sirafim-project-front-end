@@ -1,0 +1,77 @@
+.h-40 {
+  height: 40%;
+}
+
+/*Index*/
+.custom-shape-divider-bottom-1684081511 {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1684081511 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 152px;
+}
+
+.custom-shape-divider-bottom-1684081511 .shape-fill {
+  fill: #FFFFFF;
+}
+.hero {
+  width: 100%;
+  top: 0px;
+  z-index: 0;
+}
+.body {
+min-height: 110vh;
+background: #FFFFFF;
+display: flex;
+justify-content: center;
+z-index: 10;
+margin-top:350px;
+position: relative;
+}
+nav {
+  z-index: 100;
+  top: 0;
+}
+.box {
+  width: 50px;
+  height: 50px;
+  max-width: 100%;
+  border-radius: 7px;
+}
+.active {
+  background-color: green;
+}
+.col-2 {
+  padding: 0;
+}
+.col-3 {
+  padding: 0;
+}
+.w-90 {
+  width: 90%;
+}
+h3 {
+  margin: 0;
+}
+.seprator {
+  border-top: solid #eee 2px;
+}
+
+.box-icon {
+  height: fit-content;
+  font-size: 30px;
+  color: #fff;
+  text-align: center; 
+}
+select.form-control {
+  -webkit-transition: none;
+  transition: none;
+}

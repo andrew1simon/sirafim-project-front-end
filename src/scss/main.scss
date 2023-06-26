@@ -1,0 +1,6 @@
+// Modeled after ITCSS https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
+
+@use 'vuetify' with (
+  $utilities: false,
+  $color-pack: false,
+);
