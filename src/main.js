@@ -21,4 +21,6 @@ app.mount('#app')
 pinia.use(piniaPluginPersistedstate)
 
 
-axios.defaults.baseURL = 'https://andrewsimon.cu.ma/api/'
+//axios.defaults.baseURL = 'https://andrewsimon.cu.ma/api/'
+
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'

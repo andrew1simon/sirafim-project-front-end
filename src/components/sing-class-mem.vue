@@ -88,6 +88,7 @@ export default {
             noDrop:Number,
             attendenceDates:Array,
             attendedArr:Array,
+            needsAttendtion:Boolean
         },
         data() {
             return {
@@ -121,7 +122,10 @@ export default {
             setState() {
                 let unattendedTimes = parseInt(this.unattended) 
                 let state;
-                if (this.attendedArr.includes(this.name)) {
+                if(this.needsAttendtion) {
+                    state = "warning"
+                }
+                else if (this.attendedArr.includes(this.name)) {
                     state = "att"
                 }else {
 

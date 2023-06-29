@@ -5,8 +5,12 @@
         </div>
         <div class="d-flex flex-wrap align-content-center justify-content-center h-100 menu-cont">
             <ul>
-                <li>Home</li>
-                <li>Test</li>
+                <router-link  to="/" class="text-reset text-decoration-none"> <li class="py-1">Home</li> </router-link>
+                <router-link  to="/view-attendence" class="text-reset text-decoration-none"> <li class="py-1">View attendence</li> </router-link>
+                <router-link  to="/new-attendence" class="text-reset text-decoration-none"> <li class="py-1">Add attendence</li> </router-link>
+                <router-link  to="/needs-attention" class="text-reset text-decoration-none"> <li class="py-1">Needs attendtion list</li> </router-link>
+
+
             </ul>
         </div>
 
@@ -26,14 +30,11 @@
     }
     .menu-cont > ul {
         color: #212529;
-        font-size: 50px;
+        font-size: 30px;
         font-weight: 800;
         text-decoration: none;
         list-style: none;
         padding: 0px;
-    }
-    .menu-cont > ul > li {
-        padding: 10px 0;
     }
     .menu-background {
         background: rgba( 255, 255, 255, 0.25 );

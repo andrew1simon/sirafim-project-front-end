@@ -44,7 +44,14 @@ const router = createRouter({
       
       component: () => import('../views/login.vue'),
       meta: {auth:false}
-    }
+    },
+    {
+      path: '/needs-attention',
+      name: 'needs-attention',
+      
+      component: () => import('../views/needs-attention.vue'),
+      meta: {auth:true}
+    },
   ]
 })
 
