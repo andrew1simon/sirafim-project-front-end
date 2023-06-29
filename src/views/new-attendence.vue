@@ -9,7 +9,11 @@
     <Hero color="bg-primary" title="title here"/>
     <cont width="w-90">
         <div class="container px-1 pt-3">
-    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+    <div class="bg-success text-light p-1 fw-bold mb-2" v-if="submitStates == 'success'">Attendence Added successfully</div>
+    <div class="bg-warning text-light p-1 fw-bold mb-2" v-if="submitStates == 'taken before'">Event attendence was recorded before</div>
+    <div class="bg-danger text-light p-1 fw-bold mb-2" v-if="submitStates == 'error'">Error</div>
+
+    <form id="contactForm">
         <div class="form-floating mb-2">
             <select class="form-control" id="date">
                     <option v-for="date in dates" :value="[date.date]">{{ date.date }}</option>
@@ -42,7 +46,8 @@ export default {
             dates: [],
             classMems: [],
             checkedNames: [],
-            selectedDate: ""
+            selectedDate: "",
+            submitStates: ""
         }
     },
     components: {
@@ -67,6 +72,16 @@ export default {
             let PostData = await axios.post("/post-attendence" , {
                 date: date,
                 attended: this.checkedNames
+            }).then((PostData) => {
+                if(PostData.status == 200) {
+                this.submitStates = "success"
+            }
+            }).catch((PostData) => {
+                if (PostData.status == 406) {
+                this.submitStates = "taken before"
+                }else {
+                this.submitStates = "error"
+            }
             })
             
             let PostRes = await PostData.data;
