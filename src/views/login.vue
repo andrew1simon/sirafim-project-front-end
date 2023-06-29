@@ -63,7 +63,8 @@ export default {
                 }
             
             ).catch((PostData) => {
-                if(PostData.status == 500) {
+                if(PostData.status == 401) {
+                    console.log('in in')
                     this.loginStatus = "not a user"
                 }
             })
