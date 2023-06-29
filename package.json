@@ -23,6 +23,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
-    "vite": "^4.3.5"
+    "vite": "^4.3.5",
+    "vite-plugin-pwa": "^0.16.4"
   }
 }
