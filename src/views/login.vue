@@ -10,6 +10,8 @@
     <Hero color="bg-primary" title="Login"/>
     <cont>
         <div class="container px-1 pt-3 w-90">
+        <div class="bg-danger text-light p-1 fw-bold mb-2" v-if="loginStatus == 'not a user'">Username or password is incorrect</div>
+
     <form>
         <div>
             <input type="text" name="username" class="form-control" v-model="username" placeholder="Username"/>
@@ -19,7 +21,6 @@
         </div>
         <input type="button" class="btn btn-primary w-100 mt-1" @click="postLogin" value="Login"/>
     </form>
-    <button @click="getInfo" class="btn btn-primary w-100 mt-1">get info</button>
 </div>
     </cont>
 </template>
@@ -30,6 +31,7 @@ export default {
         return {
             username: "",
             password: "",
+            loginStatus: ""
         }
     },
     components: {
@@ -60,7 +62,11 @@ export default {
                  }
                 }
             
-            )
+            ).catch((PostData) => {
+                if(PostData.status == 500) {
+                    this.loginStatus = "not a user"
+                }
+            })
   
     },
         async getInfo() {

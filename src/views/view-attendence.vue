@@ -45,7 +45,7 @@ export default {
     methods: {
         async fetchData() {
             axios.defaults.headers.common["Authorization"] = `Bearer ${AuthStore.getUserTok.value}`
-            const res = await axios.get('/get-events')
+            const res = await axios.get('/get-submited-events')
             let data = await res.data
             this.dates = data.data;
         },
