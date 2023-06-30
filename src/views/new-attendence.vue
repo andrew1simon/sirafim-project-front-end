@@ -77,7 +77,7 @@ export default {
                 this.submitStates = "success"
             }
             }).catch((PostData) => {
-                if (PostData.status == 406) {
+                if (PostData.response.status == 406) {
                 this.submitStates = "taken before"
                 }else {
                 this.submitStates = "error"
