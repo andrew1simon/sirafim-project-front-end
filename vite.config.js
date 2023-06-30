@@ -15,7 +15,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+            urlPattern: /^https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font\-awesome\/.*/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'fontaw-cache',
