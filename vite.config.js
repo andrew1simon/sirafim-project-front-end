@@ -32,7 +32,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2}'],
         cleanupOutdatedCaches: true
       },
-      includeAssets: ['favicon.ico', 'https://unpkg.com/pwacompat' , 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' , 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'],
+      includeAssets: ['favicon.ico',],
       manifest: {
         name: 'Srirafim mangment app',
         short_name: 'Srirafim mangment app',

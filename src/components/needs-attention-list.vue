@@ -1,6 +1,7 @@
 <template>
     <div class="d-flex flex-column align-content-center flex-wrap">
-        <div class="w-90">
+        <div v-if="loading" class="d-flex justify-content-center"><i class='fas fa-circle-notch fa-spin text-primary mt-3 loading-cont-icon'></i></div>
+        <div class="w-90" v-if="!loading">
             <div v-for="(user, index ) in filteredUsers" v-auto-animate>
                 <SingClassMem :unattended='user["unAttended_times"]' :key="user['id']" :name="user['name']" :noDrop="user['no_drop_time']" :attendenceDates= "user['attendence_dates_primary'].slice(0,-1).split(',') || []" :lastElement= "usersLen - 1 == index " :attendedArr="attendedUsersNames" :needsAttendtion="true" />
             </div>
@@ -31,7 +32,8 @@ const AuthStore = AuthUser();
             AllUsersAttendenceRendered: "",
             usersLen: 0,
             filteredUsers: [],
-            attendedUsersNames: []
+            attendedUsersNames: [],
+            loading: true
         };
     },
     created() {
@@ -61,6 +63,7 @@ const AuthStore = AuthUser();
             this.filteredUsers =  this.dAttendedOnly.filter(this.filterUsers)
 
             this.genAttArr()
+            this.loading = false
         },
         sortById() {
             return function (elem1, elem2) {
