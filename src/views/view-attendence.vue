@@ -1,5 +1,5 @@
 <template>
-<Hero title="title here" color="bg-primary"></Hero>
+<Hero title="View attendence" color="bg-primary"></Hero>
 <Cont width="w-90">
     
     <router-link to="/new-attendence" class="text-reset text-decoration-none w-90"><h2 class="fs-6 mb-1 mt-2 text-end"><i class="fa fa-plus" aria-hidden="true"></i> Add New Attendence</h2></router-link>

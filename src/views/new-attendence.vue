@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <Hero color="bg-primary" title="title here"/>
+    <Hero color="bg-primary" title="New attendence"/>
     <cont width="w-90">
         <div v-if="loading"><i class='fas fa-circle-notch fa-spin text-primary mt-3 loading-cont-icon'></i></div>
         <div class="container px-1 pt-3" v-if="!loading">

@@ -26,7 +26,7 @@
 
 
 <template>
-    <Hero color="bg-primary" title="title here"/>
+    <Hero color="bg-primary" title="View attendence"/>
     <cont width="w-90">
         <div class="w-100 pt-2 pb-2 hor-scroll position-relative">
         <div class="w-100 position-absolute"></div>

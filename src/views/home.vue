@@ -1,33 +1,19 @@
 <script setup>
     import Hero from '../components/Hero.vue';
     import cont from '../components/cont.vue';
+    import homeCard from '../components/home-card.vue';
     import {AuthUser} from '../State/Auth';
 </script>
 
 <template>
-    <Hero color="bg-primary" title="Login"/>
+    <Hero color="bg-primary"  title="Welcome," :name = "uName" home="yes"/>
     <cont width="w-90">
-        <h2 class="text-center mt-2 fs-1">{{ uName }}</h2>
-        <div class="container w-100">
-            <router-link to='/view-attendence' class="text-reset text-decoration-none">
-                <div class="card">
-                    <div class="p-2">
-                        <i class="fa fa-calendar mb-2 text-warning text-center w-100" style="font-size: 50px;" aria-hidden="true"></i>
-                        <h5 class="card-title fs-1 text-center">View attendence</h5>
-                
-            </div>
-            </div>
-            </router-link>
-            <router-link  to="/new-attendence" class="text-reset text-decoration-none">
+        <div class="container w-100 mt-2">
+            
+            <homeCard link="/view-attendence" color="text-warning" icon="fa-calendar" title="View attendence" />
+            <homeCard link="/new-attendence" color="text-warning" icon="fa-calendar-plus" title="Add new attendence" />
 
-                <div class="card mt-2">
-                    <div class="p-2">
-                        <i class="fa fa-calendar-plus mb-2 text-warning text-center w-100" style="font-size: 50px;" aria-hidden="true"></i>
-                        <h5 class="card-title fs-1 text-center">Add new attendence</h5>
-                
-            </div>
-            </div>
-            </router-link>
+            
             
             </div>
     </cont>

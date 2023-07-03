@@ -1,6 +1,6 @@
 
 <template>
-    <Hero color="bg-primary" title="title here"/>
+    <Hero color="bg-primary" title="Needs attention"/>
     <cont width="w-90">
         <div class="pt-3 w-100">
             <needsAttentionList :filter="filter"/>

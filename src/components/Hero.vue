@@ -8,7 +8,8 @@
         <MobileMenu></MobileMenu>
      <section :class="color" class="d-flex align-content-center justify-content-center pt-1 pb-3 h-40 text-white position-fixed hero">
         <div class="hero-cont w-75 d-flex align-content-center justify-content-center flex-wrap">
-            <h3 class="align-center m-0">{{ title }}</h3>
+            <h3 class="align-center m-0 font-large text-center">{{ title }}</h3>
+            <h3 class="align-center mt-1 fs-2 text-center" v-if="home">{{ name }}</h3>
         </div>
         <div class="custom-shape-divider-bottom-1684081511">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -22,7 +23,9 @@
 export default {
     props: {
         title:String,
-        color:String
+        color:String,
+        home:Boolean,
+        name: String
     },
 }
 </script>
@@ -88,5 +91,8 @@ export default {
       margin-left: 10px;
       font-weight: 700;
       color: white;
+    }
+    .font-large {
+      font-size: 40px;
     }
 </style>
