@@ -7,8 +7,8 @@
     <h2 class="fs-1 mb-2">Select Date</h2>
         
                 <div v-if="loading" class="d-flex justify-content-center"><i class='fas fa-circle-notch fa-spin text-primary mt-3 loading-cont-icon'></i></div>
-                <div v-if="!loading" class="d-flex justify-content-center">
-                    <router-link v-for="date in dates" :to="'/view-attendence-sing?date=' + date.date" class="text-reset text-decoration-none d-flex w-90">
+                <div v-if="!loading" class="d-flex justify-content-center flex-column">
+                    <router-link v-for="date in dates" :to="'/view-attendence-sing?date=' + date.date" class="text-reset text-decoration-none d-flex w-90 justify-content-center">
                         <div class="row w-100 justify-content-center align-content-center">
                         <div class="col-2 d-flex align-content-center justify-content-center flex-wrap"><div class="box d-flex align-content-center justify-content-center flex-wrap"><i class="fa box-icon" aria-hidden="true"></i></div></div>
                         <div class="col d-flex justify-content-center flex-wrap flex-column"><h4 class="m-0"><i class="fa fa-calendar me-1" aria-hidden="true"></i> {{ date.date }}</h4></div>
