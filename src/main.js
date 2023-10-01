@@ -27,4 +27,4 @@ pinia.use(piniaPluginPersistedstate)
 
 //axios.defaults.baseURL = 'https://andrewsimon.cu.ma/sirafim-latest/api/'
 
-axios.defaults.baseURL = 'http://ch-api.rf.gd/api/'
+axios.defaults.baseURL = 'https://ch-api.rf.gd/api/'
