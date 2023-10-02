@@ -27,4 +27,4 @@ pinia.use(piniaPluginPersistedstate)
 
 //axios.defaults.baseURL = 'https://andrewsimon.cu.ma/sirafim-latest/api/'
 
-axios.defaults.baseURL = 'https://sirafim-test-2-10-dodosmsm.vercel.app/api/api'
+axios.defaults.baseURL = 'https://sirafim-api-n.vercel.app/api/api'
