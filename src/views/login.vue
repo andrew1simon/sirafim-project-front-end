@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <Hero color="bg-primary" title="Login"/>
+    <Hero color="bg-primary" title="Login" :MenuAllowed="false"/>
     <cont width="w-90">
         <div class="container px-1 pt-3 w-90">
         <div class="bg-danger text-light p-1 fw-bold mb-2" v-if="loginStatus == 'not a user'">Username or password is incorrect</div>

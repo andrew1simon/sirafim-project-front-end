@@ -1,6 +1,7 @@
 import { defineStore , storeToRefs } from "pinia";
 import { useLocalStorage } from "@vueuse/core";
 import { ref , computed} from "vue";
+
 export const AuthUser = defineStore('Auth', () => {
     const userAuth = ref(false)
     const uname = ref(null)
@@ -18,8 +19,13 @@ export const AuthUser = defineStore('Auth', () => {
     function toggleAuth() {
         userAuth.value = !userAuth.value
       }
+    function LogOut() {
+        changeName(null)
+        changeUserTok(null)
+        toggleAuth()
+    }
       
-    return { uname, usertok ,  userAuth , getName, getUserTok, getUserAuth, changeName,toggleAuth, changeUserTok }
+    return { uname, usertok ,  userAuth , getName, getUserTok, getUserAuth, changeName,toggleAuth, changeUserTok, LogOut }
      
   }, {
     persist: true,

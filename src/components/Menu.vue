@@ -9,6 +9,8 @@
                 <router-link  to="/view-attendence" class="text-reset text-decoration-none"> <li class="py-1">View attendence</li> </router-link>
                 <router-link  to="/new-attendence" class="text-reset text-decoration-none"> <li class="py-1">Add attendence</li> </router-link>
                 <router-link  to="/needs-attention" class="text-reset text-decoration-none"> <li class="py-1">Needs attendtion list</li> </router-link>
+                <li class="py-1 text-reset text-decoration-none" @click="LogOut()">Log out</li>
+
 
 
             </ul>
@@ -18,8 +20,20 @@
 </template>
 
 <script>
+    import {AuthUser} from '../State/Auth';
+    import router from '../router';
     export default {
-        props: {opened:Boolean}
+        props: {opened:Boolean},
+        methods: {
+            LogOut: function() {
+                console.log("logging out !!")
+                const AuthStore = AuthUser();
+                AuthStore.LogOut()
+                router.push("/login")
+                
+                
+            }
+        }
     }
 </script>
    

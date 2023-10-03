@@ -5,7 +5,7 @@
 </script>
 <template>
         <Nav :color="color"/>
-        <MobileMenu></MobileMenu>
+        <MobileMenu v-if="MenuAllowed"></MobileMenu>
      <section :class="color" class="d-flex align-content-center justify-content-center pt-1 pb-3 h-40 text-white position-fixed hero">
         <div class="hero-cont w-75 d-flex align-content-center justify-content-center flex-wrap">
             <h3 class="align-center m-0 font-large text-center">{{ title }}</h3>
@@ -25,6 +25,10 @@ export default {
         title:String,
         color:String,
         home:Boolean,
+        MenuAllowed: {
+          default: true,
+          type:Boolean
+        },
         name: String
     },
 }
