@@ -52,6 +52,20 @@ const router = createRouter({
       component: () => import('../views/needs-attention.vue'),
       meta: {auth:true}
     },
+    {
+      path: '/edit-attendence',
+      name: 'edit-attendence',
+      
+      component: () => import('../views/edit-attendence.vue'),
+      meta: {auth:true}
+    },
+    {
+      path: '/view-sheet',
+      name: 'view-sheet',
+      
+      component: () => import('../views/view-sheet.vue'),
+      meta: {auth:true}
+    },
   ]
 })
 
