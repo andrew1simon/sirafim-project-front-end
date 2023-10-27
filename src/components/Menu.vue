@@ -1,17 +1,24 @@
+
 <template>
     <div class="w-100 menu-background" style="position: absolute; top: 0; z-index: 1000; height: 100vh;" :class="opened ? 'd-block' : 'd-none' ">
         <div style="position: absolute; right: 20px;" class="mt-1 ms-1">
           <i class="fa fa-close" aria-hidden="true" @click="$emit('menuClosed')"></i>  
         </div>
         <div class="d-flex flex-wrap align-content-center justify-content-center h-100 menu-cont">
-            <ul>
+            <ul v-if="!AMode">
                 <router-link  to="/" class="text-reset text-decoration-none"> <li class="py-1">Home</li> </router-link>
                 <router-link  to="/view-attendence" class="text-reset text-decoration-none"> <li class="py-1">View attendence</li> </router-link>
                 <router-link  to="/new-attendence" class="text-reset text-decoration-none"> <li class="py-1">Add attendence</li> </router-link>
                 <router-link  to="/needs-attention" class="text-reset text-decoration-none"> <li class="py-1">Needs attendtion list</li> </router-link>
                 <li class="py-1 text-reset text-decoration-none" @click="LogOut()">Log out</li>
 
+            </ul>
 
+            <ul v-if="AMode">
+                <router-link  to="/" class="text-reset text-decoration-none"> <li class="py-1">Home</li> </router-link>
+                <router-link  to="/admin/servants-actions" class="text-reset text-decoration-none"> <li class="py-1">Servants actions</li> </router-link>
+                <router-link  to="/admin/classes/attendence-dates" class="text-reset text-decoration-none"> <li class="py-1">View Classes Attendnece</li> </router-link>
+                <li class="py-1 text-reset text-decoration-none" @click="LogOut()">Log out</li>
 
             </ul>
         </div>
@@ -24,10 +31,16 @@
     import router from '../router';
     export default {
         props: {opened:Boolean},
+        data () {
+            const AuthStore = AuthUser();
+            return {
+                AMode:  AuthStore.getAMode || false
+            }
+        },
         methods: {
             LogOut: function() {
-                console.log("logging out !!")
                 const AuthStore = AuthUser();
+                console.log("logging out !!")
                 AuthStore.LogOut()
                 router.push("/login")
                 

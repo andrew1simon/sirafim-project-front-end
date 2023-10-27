@@ -76,6 +76,7 @@ export default {
                             AuthStore.changeName(PostData.data.user.name)
                             let token = PostData.data.token
                             AuthStore.changeUserTok(token)
+                            AuthStore.Mode(PostData.data.AMode)
                             console.log('done Auth')
                             router.push('/')
                     }

@@ -1,0 +1,95 @@
+<template>
+<Hero :title="`View ${titles[action]}`" color="bg-primary"></Hero>
+<Cont width="w-90">
+    <div class="flex w-100 align-content-center justify-content-center">
+            
+        <router-link :to="`/admin/servants-actions/add?action=${action}`" class="text-reset text-decoration-none w-90"><h2 class="fs-6 mb-1 mt-2 text-end"><i class="fa fa-plus" aria-hidden="true"></i> Add New Action</h2></router-link>
+        
+    </div>
+    
+    <div class="d-flex w-100 align-content-center flex-wrap justify-content-between mb-2 mt-1">
+        <h2 class="fs-1 mb-0">Select Date</h2>
+        <select  class="form-select w-auto" @change="(e) => changeFilter(e)">
+            <option value="All">All</option>
+            <option value="مدارس الاحد">مدارس الاحد</option>
+            <option value="قداس">قداس</option>
+        </select>
+    </div>
+    
+        
+                <div v-if="loading" class="d-flex justify-content-center"><i class='fas fa-circle-notch fa-spin text-primary mt-3 loading-cont-icon'></i></div>
+                <div v-if="!loading" class="d-flex justify-content-center flex-column">
+                    <router-link v-for="date in filteredDates" :to="`/admin/servants-actions/view-sing?date=${date.date}&action=${action}` " class="text-reset text-decoration-none d-flex w-90 justify-content-center">
+                        <div class="row w-100 justify-content-center align-content-center">
+                        <div class="col-2 d-flex align-content-center justify-content-center flex-wrap"><div class="box d-flex align-content-center justify-content-center flex-wrap"><i class="fa box-icon" aria-hidden="true"></i></div></div>
+                        <div class="col d-flex justify-content-center flex-wrap flex-column"><h4 class="m-0"><i class="fa fa-calendar me-1" aria-hidden="true"></i> {{ date.date }}</h4></div>
+                        <div class="col-2 d-flex align-content-center justify-content-center flex-wrap text-muted">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                        <div class= "seprator my-2"></div>
+                        </div>
+                </router-link>
+                </div>
+               
+
+</Cont>
+
+        
+
+
+</template>
+
+<script>
+import Hero from '../../components/Hero.vue';
+import Cont from '../../components/cont.vue';
+import {AuthUser} from '../../State/Auth';
+import axios from 'axios';
+
+const AuthStore = AuthUser();
+
+export default {
+    data() {
+        return {
+            dates: [],
+            filteredDates: [],
+            loading: true,
+            filterValue: "All",
+            action:"",
+            titles: {attendence:"attendence" , aktma3:"Servants metting" , "lesson-prep":"Lesson prepration"}
+
+        };
+    },
+    created() {
+        this.action =  new URLSearchParams(window.location.search).get('action');
+        this.fetchData();
+    },
+    methods: {
+        async fetchData() {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${AuthStore.getUserTok.value}`
+            const res = await axios.get(`admin/get-action-events?action=${this.action}`)
+            let data = await res.data
+            this.dates = data.data;
+            this.filteredDates = data.data
+            this.loading = false
+        },
+        changeFilter(e) {
+            let {value} = e.target
+            this.filterValue = value
+            if(value == "All") {
+                this.filteredDates =  this.dates
+                console.log("all dates" , this.dates)
+            }else {
+                this.filteredDates =  this.dates.filter(this.filterCat)
+            }
+           
+            console.log(this.filteredDates)
+            console.log(this.dates)
+        },
+        filterCat(date) {
+            return date.cat == this.filterValue
+        }
+    },
+    components: { Hero, Cont }
+}
+
+</script>

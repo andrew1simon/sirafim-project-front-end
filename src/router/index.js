@@ -9,7 +9,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: ()=> import('../views/home.vue'),
-      meta: {auth:true}
+      meta: {auth:true , AMode:false}
     },
     {
       path: '/new-attendence',
@@ -66,11 +66,68 @@ const router = createRouter({
       component: () => import('../views/view-sheet.vue'),
       meta: {auth:true}
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      
+      component: () => import('../views/admin/home.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/servants-actions',
+      name: 'admin/servants-actions',
+      
+      component: () => import('../views/admin/servants-actions.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/servants-actions/add',
+      name: '/admin/servants-actions',
+      
+      component: () => import('../views/admin/ser-new-action.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/servants-actions/view',
+      name: '/admin/servants-actions-view',
+      
+      component: () => import('../views/admin/view-action.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/servants-actions/view-sing',
+      name: '/admin/servants-actions-view-sing',
+      
+      component: () => import('../views/admin/view-action-sing.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/classes/attendence-dates',
+      name: '/admin/classes-attendence-dates',
+      
+      component: () => import('../views/admin/view-events-classes.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/classes/attendence-classes-sing-date',
+      name: '/admin/attendence-classes-sing-date',
+      
+      component: () => import('../views/admin/view-all-classes.vue'),
+      meta: {auth:true , AMode:true}
+    },
+    {
+      path: '/admin/classes/attendence-sing-class-date',
+      name: '/admin/attendence-sing-class-date',
+      
+      component: () => import('../views/admin/view-class-date-sing.vue'),
+      meta: {auth:true , AMode:true}
+    },
   ]
 })
 
 router.beforeEach((to,from,next) => {
   const UserAuthRouter = AuthUser()
+  console.log("user mode" , UserAuthRouter.getAMode , "meta admin" , to.meta.AMode || false)
   console.log(UserAuthRouter.getUserAuth)
   if(to.meta.auth && !UserAuthRouter.getUserAuth) {
     next('/login')
@@ -78,7 +135,15 @@ router.beforeEach((to,from,next) => {
     next('/')
   }
   else {
-    next()
+    if((to.meta.AMode || false) != (UserAuthRouter.getAMode || false) && UserAuthRouter.getUserAuth) {
+      if(UserAuthRouter.getAMode) {
+        next('/admin')
+      }else {
+        next('/')
+      }
+    }else {
+      next()
+    }
   }
  
 } )

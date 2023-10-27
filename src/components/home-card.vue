@@ -1,6 +1,6 @@
 <template>
-    <div class="mb-2">
-        <router-link :to='link' class="text-reset text-decoration-none">
+    <div class="mb-2" :class="miniCard && 'w-40' ">
+        <router-link :to='link' class="text-reset text-decoration-none" >
                 <div class="card card-cont">
                     <div class="p-2 d-flex align-items-center flex-column my-auto flex-wrap">
                         <div class="mb-2 d-flex align-content-center justify-content-center card-icon">
@@ -24,7 +24,11 @@
             link:String,
             icon:String,
             title:String,
-            color:String
+            color:String,
+            miniCard: {
+                type:Boolean,
+                default:false
+            }
         }
     }
 </script>
@@ -47,6 +51,9 @@
     -moz-box-shadow: -3px 12px 40px -19px rgba(163,163,163,1);
     box-shadow: -9px 5px 38px -17px rgb(141 141 141);
     background: #fff;
+}
+.w-40 {
+    width: 40%;
 }
 
 </style>
