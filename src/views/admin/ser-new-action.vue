@@ -14,7 +14,7 @@
     <div class="bg-warning text-light p-1 fw-bold mb-2" v-if="submitStates == 'taken before'">Event Action was recorded before</div>
     <div class="bg-danger text-light p-1 fw-bold mb-2" v-if="submitStates == 'error'">Error</div>
 
-    <form id="contactForm" @submit.prevent = "postAttendence">
+    <form id="contactForm">
         <div class="form-floating mb-2">
             <select class="form-control" id="date">
                     <option v-for="date in dates" :value="[date.date]">{{ date.date }}</option>
@@ -23,6 +23,7 @@
             <label for="date">Date</label>
         </div>
         <div class="mb-1">
+            <center><button class="btn bg-primary text-light rounded-sm" @click="(e) => toggleSelect(e)">{{ Allselected ? "Deselect All" : "Select All" }}</button></center>
             <label class="form-label d-block">Servants</label>
             <div class="form-check" dir="rtl" v-for="(mem, index) in classMems">
                 <input type="checkbox" class="names-checkbox-boxs" :id="`name-${mem.id}`" :value="mem.id" v-model="checkedNames" />
@@ -31,7 +32,7 @@
             </div>
         </div>
         <div class="d-grid mb-3 mt-2">
-            <button class="w-100 mt-1 submit-btn"><i class='fas fa-circle-notch fa-spin' v-if="btnClicked"></i> Submit</button>
+            <button class="w-100 mt-1 submit-btn"><i class='fas fa-circle-notch fa-spin' v-if="btnClicked" @click="(e) => postAttendence(e)"></i> Submit</button>
 
         </div>
     </form>
@@ -48,6 +49,7 @@ export default {
             dates: [],
             classMems: [],
             checkedNames: [],
+            Allselected: false,
             selectedDate: "",
             submitStates: "",
             btnClicked: false,
@@ -76,7 +78,8 @@ export default {
 
             this.loading = false
         },
-        async postAttendence() {
+        async postAttendence(e) {
+            e.preventDefault();
             this.btnClicked = true
             let date = document.getElementById('date').value;
             console.log(`date:${date} \n attended:${this.checkedNames}`)
@@ -100,6 +103,17 @@ export default {
             
             let PostRes = await PostData.data;
             console.log(PostRes);
+            },
+            toggleSelect (e) {
+                e.preventDefault();
+                this.checkedNames = []
+                if(!this.Allselected) {
+                    this.classMems.map((mem) => {
+                    this.checkedNames.push(mem.id)
+                    })
+                }
+                this.Allselected = !this.Allselected
+                
             }
     }
 }
